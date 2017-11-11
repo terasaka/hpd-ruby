@@ -3,7 +3,7 @@ if (ARGV[0] == "-list") && (ARGV[1] == "dev")
     ip = File.read("ip_disponivel")
     puts ip
 
-        elsif (ARGV[0] == "-new") && (ARGV[1] == "dev") && (@@login.empty? == false)
+        elsif (ARGV[0] == "-new") && (ARGV[1] == "dev")
             # Le o arquivo
             ip = File.read("ip_disponivel")
             if (ip.empty? == false)
