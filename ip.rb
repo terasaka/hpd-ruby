@@ -1,8 +1,15 @@
-@@login = ARGV[2]
-if (ARGV[0] == "-list") && (ARGV[1] == "dev")
-    ip = File.read("ip_disponivel")
-    puts ip
+require './def.rb'
+require 'logger'
+require 'socket'
 
+# Pega o usuario logado e o IP
+@user = `whoami`.strip
+@ip_address = Socket.ip_address_list.find { |ai| ai.ipv4? && !ai.ipv4_loopback? }.ip_address
+
+checa_arquivo_ip
+
+if (ARGV[0] == "-list") && (ARGV[1] == "dev")
+    lista_ips
         elsif (ARGV[0] == "-new") && (ARGV[1] == "dev")
             # Le o arquivo
             ip = File.read("ip_disponivel")
@@ -11,8 +18,8 @@ if (ARGV[0] == "-list") && (ARGV[1] == "dev")
             disponiveis = ip.split
             # Reserva um IP e remove do Array
             reserva = disponiveis.pop
-            puts "Para a Vlan #{ARGV[1]} usa o IP #{reserva}"
-            puts "Reservado para #{ARGV[2]}"
+            puts "Para a Vlan #{ARGV[1]} utilize o IP #{reserva}"
+            puts "Usuario/IP do solicitante #{@user} / #{@ip_address}"
             # Grava o Array no arquivo após o endereço removido pelo pop
             temp = File.open("ip_disponivel", "w") do |file|
                 file.puts disponiveis
@@ -20,7 +27,7 @@ if (ARGV[0] == "-list") && (ARGV[1] == "dev")
             
             # Escreve no arquivo o ip reservado e o login que solicitou
             temp = File.open("ip_uso", "a") do |file|
-                file.puts "#{reserva} - #{ARGV[2]}"
+                file.puts "#{reserva} - #{@user}"
             end
             
             else
@@ -28,9 +35,5 @@ if (ARGV[0] == "-list") && (ARGV[1] == "dev")
             end
         #puts "Pega esse ip aqui #{file[0]} da vlan #{ARGV[1]}"
         else 
-            puts "Opcao invalida"
-            puts "Utilize as opcoes:"
-            puts "-list dev - Para listar"
-            puts "-new dev login - Para solicitar um novo IP"
-
+            erro_opcao
 end
