@@ -1,6 +1,7 @@
 require 'logger'
 
 @logger = Logger.new('./log_calc.log')
+@logger.level = Logger::INFO
 @logger.info "Iniciando Calculadora"
 
 def soma(n,m)
