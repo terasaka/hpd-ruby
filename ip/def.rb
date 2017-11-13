@@ -10,7 +10,7 @@ require 'logger'
 # Logger::FATAL
 # Logger::ERROR
 
-#@logger.level = Logger::INFO
+@logger.level = Logger::INFO
 
 # Trata o erro da opcao
 def erro_opcao
