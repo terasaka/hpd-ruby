@@ -1,7 +1,7 @@
 # hpd-ruby
 Curso de Ruby
 
-Calculadora - HPD
+# Calculadora - HPD
 
 - Digite o primeiro valor para ser calculado
 
@@ -17,7 +17,7 @@ Caso queira efetuar uma nova operação pressione Enter ou "x" para sair
 
 -----
 
-Gerador de IPs - HPD
+# Gerador de IPs - HPD
 
 - Utilize as opcoes:
   
@@ -37,3 +37,26 @@ Gerador de IPs - HPD
 
 - Ao solicitar um novo IP ele é removido do pool de IPs e adicionado ao pool de IPs em uso.
     - É logado o Login, IP e HOSTNAME do solicitante para efeito de auditoria.
+
+----
+
+# Gerador de IPs - HPD IP_2.0
+
+- Nessa versão foi utilizado a classe Thor como melhoria da ferramenta
+    - [Manual](http://whatisthor.com/)
+    - [Link para download](https://rubygems.org/gems/thor/versions/0.20.0)
+    
+- Adicionado Gemfile ao projeto
+    -   Para instalar as dependências utilize
+    ```
+    bundle install
+    ```
+- Opções
+    - list dev
+        - Lista os IPs disponiveis 
+    - new dev
+        - Libera um IP para utilizar na Vlan DEV
+    - limpa
+        - Limpa os arquivos utilizados
+
+    
