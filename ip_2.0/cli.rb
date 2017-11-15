@@ -8,9 +8,10 @@ class Cli < Thor
     @@ip_address = Socket.ip_address_list.find { |lista| lista.ipv4? && !lista.ipv4_loopback? }.ip_address
     @@hostname = Socket.gethostname
 
-    @@logger = Logger.new('./ip_2.0.log')
+    @@logger = Logger.new('./cli.log')
     @@logger.info "--------------------------------------------"
     @@logger.info "Gerador de IPs - HPD2.0"
+    @@logger.info "--------------------------------------------"
     
         # Pra alterar o nivel de log altere o valor abaixo:
         # Logger::WARN
@@ -21,7 +22,9 @@ class Cli < Thor
     @@logger.level = Logger::INFO
     
     if (File.exist?('ip_disponivel'))
+        @@logger.info "--------------------------------------------"
         @@logger.info "Arquivo ip_disponivel localizado, iniciando a leitura."
+        @@logger.info "--------------------------------------------"
     else
         cria_ip_disponivel = File.open('ip_disponivel', 'w') do |file|
             file.puts "10.1.10.3\n10.1.10.4\n10.1.10.5\n10.1.10.9\n10.1.10.20\n10.1.10.22\n10.1.10.57\n10.1.10.59"
@@ -39,7 +42,6 @@ class Cli < Thor
 
     desc("new dev","Libera um novo IP na Vlan DEV")
     def new(dev)
-        puts "Liberando IP x.x.x.x para a Vlan DEV"
         # Le o arquivo
         ip = File.read("ip_disponivel")
         if (!ip.empty?)
@@ -63,6 +65,22 @@ class Cli < Thor
         puts "Acabaram os IPs seu animal"
         @@logger.error "Acabaram os IPs disponiveis em ip_disponivel"
     end
+    end
+    
+    desc("limpa","Limpa os arquivos que foram utilizados e recria o arquivo de IPs disponiveis ")
+    def limpa
+        puts "Limpando arquivos..."
+        system("rm ./ip_*")
+        #File.delete("./ip_uso")
+        #File.delete("./ip_disponivel")
+        @@logger.info "--------------------------------------------"
+        @@logger.info "------------ Arquivos deletados ------------"
+        @@logger.info "Os arquivos ip_uso e ip_disponivel foram deletados"
+        @@logger.info "Auditoria:"
+        @@logger.info "Login: #{@@user}"  
+        @@logger.info "IP: #{@@ip_address}"
+        @@logger.info "HOSTNAME: #{@@hostname}"
+        @@logger.info "--------------------------------------------"
     end
 
 end
