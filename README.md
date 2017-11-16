@@ -53,9 +53,16 @@ Caso queira efetuar uma nova operação pressione Enter ou "x" para sair
     bundle install
     ```
 - Opções
-    - list dev
-      - Lista os IPs disponiveis 
-    - new dev
-      - Libera um IP para utilizar na Vlan DEV
-    - limpa
-      - Limpa os arquivos utilizados
+    - Lista os IPs disponiveis
+    ```bash
+    ruby ./cli.rb list dev
+    ```
+    - Libera um IP para utilizar na Vlan DEV
+
+    ```bash
+    ruby ./cli.rb  new dev
+    ```
+    - Limpa os arquivos utilizados
+    ```bash
+    ruby ./cli.rb  limpa
+    ```
