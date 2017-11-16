@@ -67,3 +67,9 @@ Caso queira efetuar uma nova operação pressione Enter ou "x" para sair
     ```bash
     ruby ./cli.rb  limpa
     ```
+
+## API
+
+API RESTful - em desenvolvimento
+
+- [Documentação](https://github.com/terasaka/hpd-ruby/blob/master/api/README.md)
