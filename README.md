@@ -46,6 +46,7 @@ Caso queira efetuar uma nova operação pressione Enter ou "x" para sair
 - Nessa versão foi utilizado a classe Thor como melhoria da ferramenta
   - [Manual](http://whatisthor.com/)
   - [Link para download](https://rubygems.org/gems/thor/versions/0.20.0)
+  - [Documentação](https://github.com/erikhuda/thor/wiki)
 
 - Adicionado Gemfile ao projeto
     - Para instalar as dependências utilize
